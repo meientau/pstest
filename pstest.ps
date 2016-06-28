@@ -1,5 +1,12 @@
+/inc {				% <name> inc -
+    dup load 1 add def
+} def
+
 /test-case {                    % <str> test-case mark
     print (\n) print
+
+    /.test-total-count 0 def
+    /.test-failed-count 0 def
 
     % (*) mark the beginning of messages for the summary
     mark
@@ -10,14 +17,20 @@
 } def
 
 /assert-equal {                 % <str> <any> <any> assert-equal
-    pop pop pop
-} def
+    /.test-total-count inc
+    eq {
+        pop (.) print
+    } {
+        pop (F) print
+        /.test-failed-count inc
+    } ifelse
+} bind def
 
 /test-summary {	                % test-summary
-    (.F\n) print
-    (--------------------------------------------------\n) print
-    (2 tests, 1 failed\n) print
     (\n) print
+    (--------------------------------------------------\n) print
+    .test-total-count 5 string cvs print ( tests, ) print
+    .test-failed-count 5 string cvs print ( failed\n\n) print
 
     (return-two)
     (  should return 2)
