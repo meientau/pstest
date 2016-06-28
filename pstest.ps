@@ -22,8 +22,8 @@
     eq {
         pop (.) print
     } {
-        pop (F) print
-        .test-current-object
+        (F) print
+        .test-current-object (\n  should ) 3 2 roll (\n)
         /.test-failed-count inc
     } ifelse
 } bind def
@@ -37,12 +37,11 @@
     % (*) now we printed them, we don't need the counts any longer
     end
 
-    (  should return 2)
-    (    expected: 2)
-    (    actual:   1)
+    (    expected: 2\n)
+    (    actual:   1\n)
 
     % (**) release accumulated messages to stdout
     ] {
-        print (\n) print
+        print
     } forall
 } def
