@@ -3,10 +3,12 @@
 /test-case {                    % <str> test-case mark
     print (\n) print
 
+    % (*) create a package dict to count the tests
+    2 dict begin
     /.test-total-count 0 def
     /.test-failed-count 0 def
 
-    % (*) mark the beginning of messages for the summary
+    % (**) mark the beginning of test results on the stack
     mark
 } def
 
@@ -30,14 +32,16 @@
     .test-total-count 5 string cvs print ( tests, ) print
     .test-failed-count 5 string cvs print ( failed\n\n) print
 
+    % (*) now we printed them, we don't need the counts any longer
+    end
+
     (return-two)
     (  should return 2)
     (    expected: 2)
     (    actual:   1)
 
-    % release accumulated messages to stdout
-    ] % (*) wrap up the array started in test-case
-    {
+    % (**) release accumulated messages to stdout
+    ] {
         print (\n) print
     } forall
 } def
