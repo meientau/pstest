@@ -18,12 +18,19 @@
 } def
 
 /assert-equal {                 % <str> <any> <any> assert-equal
+    /expected exch def
+    /actual exch def
+    /spec exch def
+
     /.test-total-count inc
-    eq {
-        pop (.) print
+    expected actual eq {
+        (.) print
     } {
         (F) print
-        .test-current-object (\n  should ) 3 2 roll (\n)
+        .test-current-object (\n)
+        (  should ) spec (\n)
+        (    expected: ) expected 1 string cvs (\n)
+        (    actual:   ) actual 1 string cvs (\n)
         /.test-failed-count inc
     } ifelse
 } bind def
@@ -36,9 +43,6 @@
 
     % (*) now we printed them, we don't need the counts any longer
     end
-
-    (    expected: 2\n)
-    (    actual:   1\n)
 
     % (**) release accumulated messages to stdout
     ] {
