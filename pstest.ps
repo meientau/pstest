@@ -29,8 +29,8 @@
         (F) print
         .test-current-object (\n)
         (  should ) spec (\n)
-        (    expected: ) expected 1 string cvs (\n)
-        (    actual:   ) actual 1 string cvs (\n)
+        (    expected: ) expected (\n)
+        (    actual:   ) actual (\n)
         /.test-failed-count inc
     } ifelse
 } bind def
@@ -46,6 +46,10 @@
 
     % (**) release accumulated messages to stdout
     ] {
-        print
+	dup type /stringtype eq {
+	    print
+	} {
+	    ==only
+	} ifelse
     } forall
 } def
