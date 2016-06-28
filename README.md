@@ -53,8 +53,11 @@ Todo
 ====
 
 * Start documentation of structure and assertions in readme
+* Add disclaimer ('do not use')
+* Publish on github
+* Convert this todo list to issues on github?
+* Add test for `util.ps`, i.e. `inc`
 * Extend `test-this` to find tests by convention
-* Add test for `util.ps: inc`
 * Pull out test failed / test passed
 * Don't output current object twice if two tests fail for it
 * Create shell script wrapper for convenience
