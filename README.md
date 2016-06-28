@@ -1,8 +1,8 @@
 Goal
 ====
 
-Practice using git like a pro, or as described here:
-http://chris.beams.io/posts/git-commit/
+Practice using git like a pro, or as described
+[by cbeams](http://chris.beams.io/posts/git-commit/).
 
 
 Idea
@@ -47,3 +47,23 @@ Output in file "readme-expected.out":
       should return 2
         expected: 2
         actual:   1
+
+
+Todo
+====
+
+* Start documentation of structure and assertions in readme
+* Extend `test-this` to find tests by convention
+* Add test for `util.ps: inc`
+* Pull out test failed / test passed
+* Don't output current object twice if two tests fail for it
+* Create shell script wrapper for convenience
+* Add `assert-true`, `assert-false`
+* Add verbose mode: show specs while they are tested
+* Add `assert-not-equal`
+* Add `assert-not-empty`
+* Add `assert-contains`
+* Add `assert-not-contains`
+* Add `assert-deep-equal`
+* Add `assert-almost-equal`
+* Add `assert-deep-almost-equal`
