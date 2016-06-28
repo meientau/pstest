@@ -1,4 +1,22 @@
-/test-case { pop } def
-/should { pop } def
-/assert-equal { pop pop pop } def
-/test-summary {} def
+/test-case {                    % <str> test-case
+    print (\n) print
+} def
+
+/should {                       % <str> should
+    pop
+} def
+
+/assert-equal {                 % <str> <any> <any> assert-equal
+    pop pop pop
+} def
+
+/test-summary {	                % test-summary
+    (.F\n) print
+    (--------------------------------------------------\n) print
+    (2 tests, 1 failed\n) print
+    (\n) print
+    (return-two\n) print
+    (  should return 2\n) print
+    (    expected: 2\n) print
+    (    actual:   1\n) print
+} def
