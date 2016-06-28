@@ -1,5 +1,8 @@
-/test-case {                    % <str> test-case
+/test-case {                    % <str> test-case mark
     print (\n) print
+
+    % (*) mark the beginning of messages for the summary
+    mark
 } def
 
 /should {                       % <str> should
@@ -15,8 +18,15 @@
     (--------------------------------------------------\n) print
     (2 tests, 1 failed\n) print
     (\n) print
-    (return-two\n) print
-    (  should return 2\n) print
-    (    expected: 2\n) print
-    (    actual:   1\n) print
+
+    (return-two)
+    (  should return 2)
+    (    expected: 2)
+    (    actual:   1)
+
+    % release accumulated messages to stdout
+    ] % (*) wrap up the array started in test-case
+    {
+        print (\n) print
+    } forall
 } def
