@@ -19,7 +19,7 @@ Code under test in file "readme-code.ps":
     /return-one 1 def
     /return-two 1 def
 
-Test:
+Test in file "readme-test.ps":
 
     (pstest.ps) runlibfile
     (readme-code.ps) run
@@ -36,7 +36,7 @@ Test:
 
     test-summary
 
-Output:
+Output in file "readme-expected.out":
 
     Snippets for the Readme
     .F
