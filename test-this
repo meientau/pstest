@@ -1,0 +1,13 @@
+#!/bin/bash
+
+name="readme"
+
+gs -q -dNOPAUSE -dNODISPLAY -I${0%/*} ${name}-test.ps quit.ps \
+    &> ${name}-actual.out
+
+if diff ${name}-expected.out ${name}-actual.out &> ${name}.diff ; then
+    echo .
+else
+    cat ${name}.diff
+    echo F
+fi
