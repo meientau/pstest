@@ -4,16 +4,17 @@
     print (\n) print
 
     % (*) create a package dict to count the tests
-    2 dict begin
+    3 dict begin
     /.test-total-count 0 def
     /.test-failed-count 0 def
+    /.test-current-object null def
 
     % (**) mark the beginning of test results on the stack
     mark
 } def
 
 /should {                       % <str> should
-    pop
+    /.test-current-object exch def
 } def
 
 /assert-equal {                 % <str> <any> <any> assert-equal
@@ -22,6 +23,7 @@
         pop (.) print
     } {
         pop (F) print
+        .test-current-object
         /.test-failed-count inc
     } ifelse
 } bind def
@@ -35,7 +37,6 @@
     % (*) now we printed them, we don't need the counts any longer
     end
 
-    (return-two)
     (  should return 2)
     (    expected: 2)
     (    actual:   1)
