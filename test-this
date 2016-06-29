@@ -1,13 +1,29 @@
 #!/bin/bash
 
-name="readme"
+declare -a failed alltests
+alltests=( *-test.ps )
+failed=()
+for testcase in ${alltests[@]} ; do
+    name="${testcase%-test.ps}"
+    gs -q -dNOPAUSE -dNODISPLAY -I${0%/*} ${name}-test.ps quit.ps \
+        &> ${name}-actual.out
 
-gs -q -dNOPAUSE -dNODISPLAY -I${0%/*} ${name}-test.ps quit.ps \
-    &> ${name}-actual.out
+    if diff ${name}-expected.out ${name}-actual.out \
+       &> ${name}.diff ; then
+	echo -n .
+    else
+	failed=( ${failed[@]} $testcase )
+	echo -n F
+    fi
+done
 
-if diff ${name}-expected.out ${name}-actual.out &> ${name}.diff ; then
-    echo .
-else
+echo
+echo '--------------------------------------------------'
+echo "${#alltests[@]} tests, ${#failed[@]} failed"
+
+for testcase in ${failed[@]} ; do
+    name="${testcase%-test.ps}"
+    echo
+    echo $testcase
     cat ${name}.diff
-    echo F
-fi
+done

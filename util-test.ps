@@ -1,0 +1,12 @@
+(pstest.ps) runlibfile
+(util.ps) run
+
+(Utils) test-case
+
+(inc) should
+(increment the value stored for a name)
+/i 1 def
+/i inc
+i 2 assert-equal
+
+test-summary
