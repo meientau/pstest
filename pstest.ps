@@ -13,11 +13,11 @@
     mark
 } def
 
-/should {                       % <str> should
+/should {                       % <str> should -
     /.test-current-object exch def
 } def
 
-/test-summary {	                % mark <any*> test-summary
+/test-summary {	                % mark <any*> test-summary -
     (\n) print
     (--------------------------------------------------\n) print
     .test-total-count 5 string cvs print ( tests, ) print
@@ -36,12 +36,12 @@
     } forall
 } def
 
-/.test-passed {
+/.test-passed {                 % - .test-passed -
     /.test-total-count inc
     (.) print
 } def
 
-/.test-failed {
+/.test-failed {                 % <str> <any> <any> .test-failed <any*>
     /.expected exch def
     /.actual exch def
     /.spec exch def
@@ -55,7 +55,7 @@
     (    actual:   ) .actual (\n)
 } def
 
-/assert-equal {                 % <str> <any> <any> assert-equal
+/assert-equal {                 % <str> <any> <any> assert-equal -
     /expected exch def
     /actual exch def
     /spec exch def
