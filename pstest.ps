@@ -36,14 +36,18 @@
     } forall
 } def
 
+/.test-passed {
+    /.test-total-count inc
+    (.) print
+} def
+
 /assert-equal {                 % <str> <any> <any> assert-equal
     /expected exch def
     /actual exch def
     /spec exch def
 
     expected actual eq {
-        /.test-total-count inc
-        (.) print
+        .test-passed
     } {
         (F) print
         .test-current-object (\n)
