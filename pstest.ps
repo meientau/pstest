@@ -17,24 +17,6 @@
     /.test-current-object exch def
 } def
 
-/assert-equal {                 % <str> <any> <any> assert-equal
-    /expected exch def
-    /actual exch def
-    /spec exch def
-
-    /.test-total-count inc
-    expected actual eq {
-        (.) print
-    } {
-        (F) print
-        .test-current-object (\n)
-        (  should ) spec (\n)
-        (    expected: ) expected (\n)
-        (    actual:   ) actual (\n)
-        /.test-failed-count inc
-    } ifelse
-} bind def
-
 /test-summary {	                % test-summary
     (\n) print
     (--------------------------------------------------\n) print
@@ -53,3 +35,21 @@
 	} ifelse
     } forall
 } def
+
+/assert-equal {                 % <str> <any> <any> assert-equal
+    /expected exch def
+    /actual exch def
+    /spec exch def
+
+    /.test-total-count inc
+    expected actual eq {
+        (.) print
+    } {
+        (F) print
+        .test-current-object (\n)
+        (  should ) spec (\n)
+        (    expected: ) expected (\n)
+        (    actual:   ) actual (\n)
+        /.test-failed-count inc
+    } ifelse
+} bind def
