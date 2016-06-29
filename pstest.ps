@@ -41,8 +41,8 @@
     /actual exch def
     /spec exch def
 
-    /.test-total-count inc
     expected actual eq {
+        /.test-total-count inc
         (.) print
     } {
         (F) print
@@ -50,6 +50,7 @@
         (  should ) spec (\n)
         (    expected: ) expected (\n)
         (    actual:   ) actual (\n)
+        /.test-total-count inc
         /.test-failed-count inc
     } ifelse
 } bind def
