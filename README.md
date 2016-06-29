@@ -117,13 +117,14 @@ output device.
 
 When an error occurs, the program just breaks off with ghostscript's
 standard error handling.  In particular, no further tests are
-executed. (#18)
+executed. [#18](https://github.com/tylus/pstest/issues/18)
 
 There is no special construct to test error handling in an
-application. (#15)
+application. [#15](https://github.com/tylus/pstest/issues/15)
 
 The diff of objects is not very useful yet. For example, arrays are
-always shown in full; contents of dicts are not shown at all. (#16)
+always shown in full; contents of dicts are not shown at all.
+[#16](https://github.com/tylus/pstest/issues/16)
 
 The test summary is fragile: If any garbage is left on the stack by
 the tests or code under test (especially marks), it will likely
