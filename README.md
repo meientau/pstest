@@ -146,27 +146,3 @@ guidelines](http://www.ghostscript.com/doc/current/Ps-style.htm) of
 which I am aware.  In this project, I have started to adopt that
 style; except for the names, where I like `hyphenated-names` better
 than `camelCase` (in PostScript).
-
-
-Todo
-====
-
-* Convert this todo list to issues on github?
-* Add test for `util.ps`, i.e. `inc`
-* Extend `test-this` to find tests by convention
-* Pull out test failed / test passed
-* Don't output current object twice if two tests fail for it
-* Create shell script wrapper for convenience
-* Add `assert-true`, `assert-false`
-* Add verbose mode: show specs while they are tested
-* Add `assert-not-equal`
-* Add `assert-not-empty`
-* Add `assert-contains`
-* Add `assert-not-contains`
-* Add `assert-deep-equal`
-* Add `assert-almost-equal`
-* Add `assert-deep-almost-equal`
-* Add `assert-throws-error`
-* Refine diff of arrays
-* Distinguish "failure" vs. "error"
-* Continue after error
