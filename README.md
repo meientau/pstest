@@ -144,5 +144,7 @@ whether I can do it, if you know a better way, please let me know.
 Ghostscript also has the only [coding
 guidelines](http://www.ghostscript.com/doc/current/Ps-style.htm) of
 which I am aware.  In this project, I have started to adopt that
-style; except for the names, where I like `hyphenated-names` better
-than `camelCase` (in PostScript).
+style. Exceptions:
+
+* I like `hyphenated-names` better than `camelCase` in PostScript.
+* I don't put a copyright notice at the top of every file.
