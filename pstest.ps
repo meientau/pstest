@@ -41,6 +41,20 @@
     (.) print
 } def
 
+/.test-failed {
+    /.expected exch def
+    /.actual exch def
+    /.spec exch def
+
+    /.test-total-count inc
+    /.test-failed-count inc
+    (F) print
+    .test-current-object (\n)
+    (  should ) .spec (\n)
+    (    expected: ) .expected (\n)
+    (    actual:   ) .actual (\n)
+} def
+
 /assert-equal {                 % <str> <any> <any> assert-equal
     /expected exch def
     /actual exch def
@@ -49,12 +63,6 @@
     expected actual eq {
         .test-passed
     } {
-        (F) print
-        .test-current-object (\n)
-        (  should ) spec (\n)
-        (    expected: ) expected (\n)
-        (    actual:   ) actual (\n)
-        /.test-total-count inc
-        /.test-failed-count inc
+        spec actual expected .test-failed
     } ifelse
 } bind def
