@@ -49,7 +49,10 @@
     /.test-total-count inc
     /.test-failed-count inc
     (F) print
-    (\n) .test-current-object (\n)
+    .test-current-object null eq not {
+        (\n) .test-current-object (\n)
+        /.test-current-object null def
+    } if
     (  should ) .spec (\n)
     (    expected: ) .expected (\n)
     (    actual:   ) .actual (\n)

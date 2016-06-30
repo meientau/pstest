@@ -1,7 +1,7 @@
 Sample Tests
-.F.F.F.F
+.F.F.F.FF
 --------------------------------------------------
-8 tests, 4 failed
+9 tests, 5 failed
 
 assert-equal
   should be equal but fail
@@ -20,5 +20,8 @@ assert-false
 
 assert-true
   should be true but fail
+    expected: 1
+    actual:   false
+  should not output the item twice (#4)
     expected: 1
     actual:   false
