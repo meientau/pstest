@@ -87,6 +87,14 @@ messages that have accumulated on the stack.
 Test assertions
 ---------------
 
+ * _spec actual_ **assert-true** _any*_
+
+Pass if the value is true, fail otherwise.
+
+ * _spec actual_ **assert-false** _any*_
+
+Pass if the value is false, fail otherwise.
+
  * _spec actual expected_ **assert-equal** _any*_
 
 Compares the two objects from the top of the stack.
@@ -95,7 +103,10 @@ If they are equal, the test is passed.
 Otherwise prepares information so that the result is easier to
 interpret.
 
+ * _spec actual expected_ **assert-not-equal** _any*_
 
+Compares the two objects from the top of the stack.
+If they are _not_ equal, the test is passed.
 
 Caveats
 =======
