@@ -1,0 +1,22 @@
+#!/bin/bash
+
+quiet=false
+if [ "$1" = "-q" ] ; then
+    quiet=true
+    shift
+fi
+
+verbose=false
+if [ "$1" = "-v" ] ; then
+    verbose=true
+    shift
+fi
+
+tests=${@:-*-test.ps}
+
+command="gs -q -dNOPAUSE -dNODISPLAY -I${0%/*} -dverbose=$verbose $tests quit.ps"
+if $quiet ; then
+    $command
+else
+    time $command
+fi
