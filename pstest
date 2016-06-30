@@ -3,17 +3,35 @@
 quiet=false
 verbose=false
 
-while getopts :v:q opt ; do
+while getopts vqh opt ; do
     case $opt in
-        v) verbose=true ;;
+        h|\?)
+            cat <<EOF
+usage:
+  ${0##*/} [-q|-v|-h] [TESTFILENAME ...]
+
+If no TESTFILENAME is given, run all tests in this directory matching
+"*-test.ps".
+
+ -q    quiet: do not show timings at the end
+ -v    verbose: show specs before they are checked
+ -h    help: show this message and exit
+EOF
+            exit 0
+            ;;
+
         q) quiet=true ;;
+
+        v) verbose=true ;;
     esac
 done
+
 shift $((OPTIND-1))
 
 tests=${@:-*-test.ps}
 
 command="gs -q -dNOPAUSE -dNODISPLAY -I${0%/*} -dverbose=$verbose $tests quit.ps"
+
 if $quiet ; then
     $command
 else
