@@ -37,4 +37,21 @@
   (not output the item twice (#4))
   false assert-true
 
+(assert-empty) should
+
+  (be empty)
+  [] assert-empty
+
+  (be empty but fail)
+  [0] assert-empty
+
+(assert-not-empty) should
+
+  (not be empty)
+  [0] assert-not-empty
+
+  (not be empty but fail)
+  [] assert-not-empty
+
+
 test-summary

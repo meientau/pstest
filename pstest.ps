@@ -120,3 +120,27 @@
         spec actual expected .test-failed
     } ifelse
 } bind def
+
+/assert-empty {                 % <str> <array> assert-empty <any>*
+    /expected (empty) def
+    /actual exch def
+    /spec exch def
+
+    actual length 0 eq {
+	spec .test-passed
+    } {
+	spec actual expected .test-failed
+    } ifelse
+} bind def
+
+/assert-not-empty {            % <str> <array> assert-not-empty <any>*
+    /expected (not empty) def
+    /actual exch def
+    /spec exch def
+
+    actual length 0 ne {
+	spec .test-passed
+    } {
+	spec actual expected .test-failed
+    } ifelse
+} bind def
