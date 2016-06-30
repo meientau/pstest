@@ -1,9 +1,24 @@
 Sample Tests
-.F
+.F.F.F.F
 --------------------------------------------------
-2 tests, 1 failed
+8 tests, 4 failed
 
 assert-equal
   should be equal but fail
     expected: 2
     actual:   1
+
+assert-not-equal
+  should not be equal but fail
+    expected: 1
+    actual:   1
+
+assert-false
+  should be false but fail
+    expected: 1
+    actual:   true
+
+assert-true
+  should be true but fail
+    expected: 1
+    actual:   false

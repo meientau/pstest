@@ -21,7 +21,7 @@
     (\n) print
     (--------------------------------------------------\n) print
     .test-total-count 5 string cvs print ( tests, ) print
-    .test-failed-count 5 string cvs print ( failed\n\n) print
+    .test-failed-count 5 string cvs print ( failed\n) print
 
     % (*) now we printed them, we don't need the counts any longer
     end
@@ -73,6 +73,28 @@
     /spec exch def
 
     expected actual eq not {
+        .test-passed
+    } {
+        spec actual expected .test-failed
+    } ifelse
+} bind def
+
+/assert-true {             % <str> <any> <any> assert-true -
+    /actual exch def
+    /spec exch def
+
+    actual {
+        .test-passed
+    } {
+        spec actual expected .test-failed
+    } ifelse
+} bind def
+
+/assert-false {             % <str> <any> <any> assert-true -
+    /actual exch def
+    /spec exch def
+
+    actual not {
         .test-passed
     } {
         spec actual expected .test-failed

@@ -4,18 +4,34 @@
 
 (assert-equal) should
 
-(be equal)
-1 1 assert-equal
+  (be equal)
+  1 1 assert-equal
 
-(be equal but fail)
-1 2 assert-equal
+  (be equal but fail)
+  1 2 assert-equal
 
 (assert-not-equal) should
 
-(not be equal)
-1 2 assert-not-equal
+  (not be equal)
+  1 2 assert-not-equal
 
-(not be equal but fail)
-1 1 assert-not-equal
+  (not be equal but fail)
+  1 1 assert-not-equal
+
+(assert-false) should
+
+  (be false)
+  false assert-false
+
+  (be false but fail)
+  true assert-false
+
+(assert-true) should
+
+  (be true)
+  true assert-true
+
+  (be true but fail)
+  false assert-true
 
 test-summary
