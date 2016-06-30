@@ -83,6 +83,7 @@
 } bind def
 
 /assert-true {             % <str> <any> <any> assert-true -
+    /expected true def
     /actual exch def
     /spec exch def
 
@@ -94,6 +95,7 @@
 } bind def
 
 /assert-false {             % <str> <any> <any> assert-true -
+    /expected false def
     /actual exch def
     /spec exch def
 
