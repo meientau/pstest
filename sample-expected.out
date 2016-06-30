@@ -1,0 +1,9 @@
+Sample Tests
+.F
+--------------------------------------------------
+2 tests, 1 failed
+
+assert-equal
+  should be equal but fail
+    expected: 2
+    actual:   1
