@@ -5,7 +5,7 @@ alltests=( *-test.ps )
 failed=()
 for testcase in ${alltests[@]} ; do
     name="${testcase%-test.ps}"
-    gs -q -dNOPAUSE -dNODISPLAY -I${0%/*} ${name}-test.ps quit.ps \
+    gs -q -dNOPAUSE -dNODISPLAY -I${0%/*} -dverbose=false ${name}-test.ps quit.ps \
         &> ${name}-actual.out
 
     if diff ${name}-expected.out ${name}-actual.out \

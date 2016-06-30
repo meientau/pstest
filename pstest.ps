@@ -1,7 +1,8 @@
 (util.ps) runlibfile
 
 /test-case {                    % <str> test-case mark
-    print (\n) print
+    (\n) print print (\n) print
+    verbose {(\n) print} if
 
     % (*) create a package dict to count the tests
     3 dict begin
@@ -14,11 +15,14 @@
 } def
 
 /should {                       % <str> should -
+    verbose {
+        dup print (\n) print
+    } if
     /.test-current-object exch def
 } def
 
 /test-summary {	                % mark <any*> test-summary -
-    (\n) print
+    verbose not {(\n) print} if
     (--------------------------------------------------\n) print
     .test-total-count 5 string cvs print ( tests, ) print
     .test-failed-count 5 string cvs print ( failed\n) print
@@ -38,7 +42,12 @@
 
 /.test-passed {                 % - .test-passed -
     /.test-total-count inc
-    (.) print
+    verbose {
+        (  should ) print print ( PASS\n) print
+    } {
+        pop
+        (.) print
+    } ifelse
 } def
 
 /.test-failed {                 % <str> <any> <any> .test-failed <any*>
@@ -48,11 +57,17 @@
 
     /.test-total-count inc
     /.test-failed-count inc
-    (F) print
     .test-current-object null eq not {
         (\n) .test-current-object (\n)
         /.test-current-object null def
     } if
+
+    verbose {
+        (  should ) print .spec print ( FAIL\n) print
+    } {
+        (F) print
+    } ifelse
+
     (  should ) .spec (\n)
     (    expected: ) .expected (\n)
     (    actual:   ) .actual (\n)
@@ -64,7 +79,7 @@
     /spec exch def
 
     expected actual eq {
-        .test-passed
+        spec .test-passed
     } {
         spec actual expected .test-failed
     } ifelse
@@ -76,7 +91,7 @@
     /spec exch def
 
     expected actual eq not {
-        .test-passed
+        spec .test-passed
     } {
         spec actual expected .test-failed
     } ifelse
@@ -88,7 +103,7 @@
     /spec exch def
 
     actual {
-        .test-passed
+        spec .test-passed
     } {
         spec actual expected .test-failed
     } ifelse
@@ -100,7 +115,7 @@
     /spec exch def
 
     actual not {
-        .test-passed
+        spec .test-passed
     } {
         spec actual expected .test-failed
     } ifelse
