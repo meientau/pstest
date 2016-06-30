@@ -1,14 +1,4 @@
-Goal
-====
-
-Practice using git like a pro, or as described
-[by cbeams](http://chris.beams.io/posts/git-commit/).
-
-
-Idea
-====
-
-Write a PostScript unit test framework.
+A PostScript unit test framework written in PostScript.
 
 
 Example
