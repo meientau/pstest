@@ -88,25 +88,23 @@ Test assertions
 ---------------
 
  * _spec actual_ **assert-true** _any*_
-
-Pass if the value is true, fail otherwise.
-
  * _spec actual_ **assert-false** _any*_
 
-Pass if the value is false, fail otherwise.
+Pass if the value is true or false respectively, fail otherwise.
 
  * _spec actual expected_ **assert-equal** _any*_
+ * _spec actual expected_ **assert-not-equal** _any*_
 
 Compares the two objects from the top of the stack.
-If they are equal, the test is passed.
+If they are equal or not equal respectively, the test is passed.
 
 Otherwise prepares information so that the result is easier to
 interpret.
 
- * _spec actual expected_ **assert-not-equal** _any*_
+ * _spec array_ **assert-empty** _any*_
+ * _spec array_ **assert-not-empty** _any*_
 
-Compares the two objects from the top of the stack.
-If they are _not_ equal, the test is passed.
+Pass if the arrays is empty or not empty, respectively.
 
 Caveats
 =======
