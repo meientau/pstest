@@ -75,4 +75,35 @@
   (fail to not contain)
   (123) (2) assert-not-string-contains
 
+(assert-contains) should
+
+  (contain at beginning)
+  [1 2 3] 1 assert-contains
+
+  (contain in middle)
+  [1 2 3] 2 assert-contains
+
+  (contain at end)
+  [1 2 3] 3 assert-contains
+
+  (contain in mix)
+  [2 (2) /2] (2) assert-contains
+
+  (fail to contain)
+  [1 2 3] 4 assert-contains
+
+  (fail to contain string in mix)
+  [2 /2] (2) assert-contains
+
+  (fail to contain name in mix)
+  [2 (2)] /2 assert-contains
+
+(assert-not-contains) should
+
+  (not contain)
+  [1 2 3] 4 assert-not-contains
+
+  (fail to not contain)
+  [1 2 3] 2 assert-not-contains
+
 test-summary

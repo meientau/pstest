@@ -1,8 +1,8 @@
 
 Sample Tests
-.F.F.F.FF.F.F...F.F
+.F.F.F.FF.F.F...F.F....FFF.F
 --------------------------------------------------
-19 tests, 9 failed
+28 tests, 13 failed
 
 assert-equal
   should be equal but fail
@@ -46,3 +46,19 @@ assert-not-string-contains
   should fail to not contain
     expected: not containing '2'
     actual:   123
+
+assert-contains
+  should fail to contain
+    expected: containing '4'
+    actual:   [1 2 3]
+  should fail to contain string in mix
+    expected: containing '2'
+    actual:   [2 /2]
+  should fail to contain name in mix
+    expected: containing '/2'
+    actual:   [2 (2)]
+
+assert-not-contains
+  should fail to not contain
+    expected: not containing '2'
+    actual:   [1 2 3]

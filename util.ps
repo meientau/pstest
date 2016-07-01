@@ -1,3 +1,18 @@
 /inc {				% <name> inc -
     dup load 1 add def
-} def
+} bind def
+
+/array-contains {               % <array> <object> array-contains <bool>
+    3 dict begin
+    /needle exch def
+    /hay exch def
+    /needletype needle type cvlit def
+
+    false hay {
+        dup type cvlit needletype eq
+        exch needle eq and
+        or
+    } forall
+
+    end
+} bind def

@@ -4,9 +4,22 @@
 (Utils) test-case
 
 (inc) should
-(increment the value stored for a name)
-/i 1 def
-/i inc
-i 2 assert-equal
+  (increment the value stored for a name)
+    /i 1 def
+    /i inc
+    i 2 assert-equal
+
+(array-contains) should
+  (return true if value exists in array)
+    [1 2 3] 3 array-contains assert-true
+
+  (return false if value does not exist in array)
+    [1 2 3] 4 array-contains assert-false
+
+  (return false if similar value has wrong type - str/number)
+    [1 2 (3)] 3 array-contains assert-false
+
+  (return false if similar value has wrong type - str/name)
+    [1 2 (3)] /3 array-contains assert-false
 
 test-summary

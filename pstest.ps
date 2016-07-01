@@ -145,7 +145,7 @@
     } ifelse
 } bind def
 
-/assert-string-contains { % <str> <array> <any> assert-contains <any>*
+/assert-string-contains { % <str> <str> <str> assert-string-contains <any>*
     /needle exch def
     /hay exch def
     /spec exch def
@@ -155,9 +155,9 @@
     } {
         pop spec hay {(containing ') needle (')} .test-failed
     } ifelse
-} def
+} bind def
 
-/assert-not-string-contains { % <str> <array> <any> assert-contains <any>*
+/assert-not-string-contains { % <str> <str> <str> assert-not-string-contains <any>*
     /needle exch def
     /hay exch def
     /spec exch def
@@ -167,4 +167,28 @@
     } {
         pop pop pop spec hay {(not containing ') needle (')} .test-failed
     } ifelse
-} def
+} bind def
+
+/assert-contains {        % <str> <array> <any> assert-contains <any>*
+    /needle exch def
+    /hay exch def
+    /spec exch def
+
+    hay needle array-contains {
+        spec .test-passed
+    } {
+        spec hay {(containing ') needle (')} .test-failed
+    } ifelse
+} bind def
+
+/assert-not-contains {        % <str> <array> <any> assert-not-contains <any>*
+    /needle exch def
+    /hay exch def
+    /spec exch def
+
+    hay needle array-contains not {
+        spec .test-passed
+    } {
+        spec hay {(not containing ') needle (')} .test-failed
+    } ifelse
+} bind def

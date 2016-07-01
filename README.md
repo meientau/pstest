@@ -112,6 +112,12 @@ Pass if the array is empty or not empty, respectively.
 Pass if the string needle is contained or not contained, respectively,
 in the string hay.
 
+ * _spec array object_ **assert-contains** _any*_
+ * _spec array object_ **assert-not-contains** _any*_
+
+Pass if the object is contained or not contained, respectively, in the
+array.  Uses shallow search and only accepts object of matching type.
+
 
 Caveats
 =======
