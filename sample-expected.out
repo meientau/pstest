@@ -1,8 +1,8 @@
 
 Sample Tests
-.F.F.F.FF.F.F...F.F....FFF.F
+.F.F.F.FF.F.F...F.F....FFF.F....FFF
 --------------------------------------------------
-28 tests, 13 failed
+35 tests, 16 failed
 
 assert-equal
   should be equal but fail
@@ -62,3 +62,14 @@ assert-not-contains
   should fail to not contain
     expected: not containing '2'
     actual:   [1 2 3]
+
+assert-deep-equal
+  should fail for simple arrays with differing content
+    expected: [1 2 4]
+    actual:   [1 2 3]
+  should fail for deeply nested arrays
+    expected: [1 [[2] 3] [4 [0]] [5]]
+    actual:   [1 [[2] 3] [4 []] [5]]
+  should fail for type mismatch
+    expected: [(1)]
+    actual:   [/1]

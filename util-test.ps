@@ -22,4 +22,17 @@
   (return false if similar value has wrong type - str/name)
     [1 2 (3)] /3 array-contains assert-false
 
+
+(zip) should
+  (merge two arrays pairwise)
+    /zipped [1 2 3] [4 5] zip def
+    zipped  [[1 4] [2 5]] assert-deep-equal
+
+(deep-eq) should
+  (be false for two arrays with ne elements)
+    [1] [2] deep-eq assert-false
+
+  (be true for two arrays with eq elements)
+    [1] [1] deep-eq assert-true
+
 test-summary

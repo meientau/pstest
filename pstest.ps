@@ -192,3 +192,15 @@
         spec hay {(not containing ') needle (')} .test-failed
     } ifelse
 } bind def
+
+/assert-deep-equal {  % <str> <array> <array> assert-deep-equal <any>*
+    /expected exch def
+    /actual exch def
+    /spec exch def
+
+    expected actual deep-eq {
+        spec .test-passed
+    } {
+        spec actual expected .test-failed
+    } ifelse
+} bind def

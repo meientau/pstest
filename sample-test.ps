@@ -106,4 +106,27 @@
   (fail to not contain)
   [1 2 3] 2 assert-not-contains
 
+(assert-deep-equal) should
+
+  (pass for primitives)
+  1 1 assert-deep-equal
+
+  (pass for simple arrays)
+  [1 2 3] [1 2 3] assert-deep-equal
+
+  (pass for nested arrays)
+  [[1]] [[1]] assert-deep-equal
+
+  (pass for arrays with varying depth of nesting)
+  [1 [2] [3 4 [5]]]  [1 [2] [3 4 [5]]]  assert-deep-equal
+
+  (fail for simple arrays with differing content)
+  [1 2 3] [1 2 4] assert-deep-equal
+
+  (fail for deeply nested arrays)
+  [1 [[2] 3] [4 []] [5]]  [1 [[2] 3] [4 [0]] [5]]  assert-deep-equal
+
+  (fail for type mismatch)
+  [/1] [(1)] assert-deep-equal
+
 test-summary

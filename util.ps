@@ -16,3 +16,64 @@
 
     end
 } bind def
+
+/zip {				% <array> <array> zip <array>
+    3 dict begin
+    /b exch def
+    /a exch def
+    /len a length b length min def
+
+    [
+	0 1 len 1 sub {
+	    /pos exch def
+	    [a pos get b pos get]
+	} for
+    ]
+    end
+} def
+
+/deep-eq {/.op {eq} def .deep-op} def % <array> <array> deep-eq <bool>
+
+/.deep-op {			% <array> <array> <op> .deep-op <bool>
+    /b exch def
+    /a exch def
+
+    {
+	a type b type ne {
+	    false
+	    exit
+	} if
+
+	a type /arraytype ne
+	a type /dicttype ne and
+	a type /stringtype ne and {
+	    a b .op
+	    exit
+	} if
+
+	a length b length ne {
+	    false
+	    exit
+	} if
+
+	a type /dicttype eq {
+	    true a {
+		/value exch def
+		/key exch def
+
+		b key known {
+		    b key get value .deep-op
+		} {
+		    false
+		} ifelse
+		and
+	    } forall
+	    exit
+	} if
+
+	true a b zip {
+	    aload pop .deep-op and
+	} forall
+	exit
+    } loop
+} def
