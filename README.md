@@ -101,6 +101,11 @@ If they are equal or not equal respectively, the test is passed.
 Otherwise prepares information so that the result is easier to
 interpret.
 
+ * _spec actual expected_ **assert-deep-equal** _any*_
+
+Compares two objects, descending into sequences (arrays/dicts/strings)
+to compare individual corresponding entries.
+
  * _spec array_ **assert-empty** _any*_
  * _spec array_ **assert-not-empty** _any*_
 

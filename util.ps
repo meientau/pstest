@@ -50,8 +50,7 @@
         } if
 
         a type /arraytype ne    % primitive object: compare directly
-        a type /dicttype ne and
-        a type /stringtype ne and {
+        a type /dicttype ne and {
             a b .op
             exit
         } if
