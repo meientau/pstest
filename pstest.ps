@@ -204,3 +204,16 @@
         spec actual expected .test-failed
     } ifelse
 } bind def
+
+/assert-error {                 % <str> <proc> <proc> assert-error <any>*
+    /clean exch def
+    /proc exch def
+    /spec exch def
+
+    /proc load stopped {
+        clean
+        spec .test-passed
+    } {
+        spec (no error) (error) .test-failed
+    } ifelse
+} bind def

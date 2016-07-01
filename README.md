@@ -87,16 +87,16 @@ messages that have accumulated on the stack.
 Test assertions
 ---------------
 
- * _spec actual_ **assert-true** _any*_
- * _spec actual_ **assert-false** _any*_
+ * _spec value_ **assert-true** _any*_
+ * _spec value_ **assert-false** _any*_
 
-Pass if the value is true or false respectively, fail otherwise.
+Pass if the _value_ is `true` or `false` respectively, fail otherwise.
 
  * _spec actual expected_ **assert-equal** _any*_
  * _spec actual expected_ **assert-not-equal** _any*_
 
-Compares the two objects from the top of the stack.
-If they are equal or not equal respectively, the test is passed.
+Compares the two objects from the top of the stack.  If they are equal
+or not equal, respectively, the test is passed.
 
 Otherwise prepares information so that the result is easier to
 interpret.
@@ -109,19 +109,32 @@ compare individual corresponding entries.  Also works for primitives.
  * _spec array_ **assert-empty** _any*_
  * _spec array_ **assert-not-empty** _any*_
 
-Pass if the array is empty or not empty, respectively.
+Pass if the _array_ is empty or not empty, respectively.
 
  * _spec hay needle_ **assert-string-contains** _any*_
  * _spec hay needle_ **assert-not-string-contains** _any*_
 
-Pass if the string needle is contained or not contained, respectively,
-in the string hay.
+Pass if the string _needle_ is contained or not contained,
+respectively, in the string _hay_.
 
  * _spec array object_ **assert-contains** _any*_
  * _spec array object_ **assert-not-contains** _any*_
 
-Pass if the object is contained or not contained, respectively, in the
-array.  Uses shallow search and only accepts object of matching type.
+Pass if the _object_ is contained or not contained, respectively, in the
+_array_.  Uses shallow search and only accepts objects of matching type.
+
+ * _spec proc clean_ **assert-error** _any*_
+
+Execute the _proc_ in a `stopped` context, expecting an error.  Pass
+if the error is thrown, otherwise fail.
+
+If any cleanup is needed after the test passes, e.g. removing debris
+from the stack, put that into the procedure _clean_. This will only be
+executed if the test passes.
+
+If the test fails, execution still continues with the next test.  No
+automatic cleanup is done though, and the output of the
+**test-summary** is still likely to be garbage.
 
 
 Caveats
@@ -132,12 +145,9 @@ This is more of a plaything than a serious endeavour.
 There is no special construct to actually test some paint in the
 output device.
 
-When an error occurs, the program just breaks off with ghostscript's
-standard error handling.  In particular, no further tests are
-executed. [#18](https://github.com/tylus/pstest/issues/18)
-
-There is no special construct to test error handling in an
-application. [#15](https://github.com/tylus/pstest/issues/15)
+When an unexpected error occurs, the program just breaks off with
+ghostscript's standard error handling.  In particular, no further
+tests are executed. [#18](https://github.com/tylus/pstest/issues/18)
 
 The diff of objects is not very useful yet. For example, arrays are
 always shown in full; contents of dicts are not shown at all.
@@ -146,6 +156,9 @@ always shown in full; contents of dicts are not shown at all.
 The test summary is fragile: If any garbage is left on the stack by
 the tests or code under test (especially marks), it will likely
 produce garbage.
+
+While there is an assertion to test error handling in an application,
+even here no automatic cleanup is done.
 
 
 References
