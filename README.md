@@ -103,8 +103,8 @@ interpret.
 
  * _spec actual expected_ **assert-deep-equal** _any*_
 
-Compares two objects, descending into sequences (arrays/dicts/strings)
-to compare individual corresponding entries.
+Compares two objects, descending recursively into arrays and dicts to
+compare individual corresponding entries.  Also works for primitives.
 
  * _spec array_ **assert-empty** _any*_
  * _spec array_ **assert-not-empty** _any*_
