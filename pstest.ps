@@ -144,3 +144,27 @@
 	spec actual expected .test-failed
     } ifelse
 } bind def
+
+/assert-string-contains { % <str> <array> <any> assert-contains <any>*
+    /needle exch def
+    /hay exch def
+    /spec exch def
+
+    hay needle search {
+        pop pop pop spec .test-passed
+    } {
+        pop spec hay {(containing ') needle (')} .test-failed
+    } ifelse
+} def
+
+/assert-not-string-contains { % <str> <array> <any> assert-contains <any>*
+    /needle exch def
+    /hay exch def
+    /spec exch def
+
+    hay needle search not {
+        pop spec .test-passed
+    } {
+        pop pop pop spec hay {(not containing ') needle (')} .test-failed
+    } ifelse
+} def

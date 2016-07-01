@@ -1,8 +1,8 @@
 
 Sample Tests
-.F.F.F.FF.F.F
+.F.F.F.FF.F.F...F.F
 --------------------------------------------------
-13 tests, 7 failed
+19 tests, 9 failed
 
 assert-equal
   should be equal but fail
@@ -36,3 +36,13 @@ assert-not-empty
   should not be empty but fail
     expected: not empty
     actual:   []
+
+assert-string-contains
+  should fail to contain
+    expected: containing '4'
+    actual:   123
+
+assert-not-string-contains
+  should fail to not contain
+    expected: not containing '2'
+    actual:   123

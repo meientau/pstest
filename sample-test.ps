@@ -53,5 +53,26 @@
   (not be empty but fail)
   [] assert-not-empty
 
+(assert-string-contains) should
+
+  (contain at beginning)
+  (123) (12) assert-string-contains
+
+  (contain itself)
+  (123) (123) assert-string-contains
+
+  (contain at end)
+  (123) (23) assert-string-contains
+
+  (fail to contain)
+  (123) (4) assert-string-contains
+
+(assert-not-string-contains) should
+
+  (not contain)
+  (123) (4) assert-not-string-contains
+
+  (fail to not contain)
+  (123) (2) assert-not-string-contains
 
 test-summary

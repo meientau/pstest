@@ -104,7 +104,14 @@ interpret.
  * _spec array_ **assert-empty** _any*_
  * _spec array_ **assert-not-empty** _any*_
 
-Pass if the arrays is empty or not empty, respectively.
+Pass if the array is empty or not empty, respectively.
+
+ * _spec hay needle_ **assert-string-contains** _any*_
+ * _spec hay needle_ **assert-not-string-contains** _any*_
+
+Pass if the string needle is contained or not contained, respectively,
+in the string hay.
+
 
 Caveats
 =======
