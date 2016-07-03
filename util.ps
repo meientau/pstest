@@ -2,6 +2,19 @@
     dup load 1 add def
 } bind def
 
+% https://en.wikibooks.org/wiki/PostScript_FAQ#How_to_concatenate_strings.3F
+/concat-strings {               % <str> <str> concat-strings <str>
+    exch dup length
+    2 index length add string
+    dup dup 4 2 roll copy length
+    4 -1 roll putinterval
+} bind def
+
+/render-signed {                   % <num> render-signed <str>
+    dup 0 ge {( + )} {( - )} ifelse
+    exch abs =string cvs concat-strings
+} bind def
+
 /array-contains {               % <array> <obj> array-contains <bool>
     3 dict begin
     /needle exch def

@@ -1,8 +1,8 @@
 
 Sample Tests
-.F.F.F.FF.F.F...F.F....FFF.F....FFF
+.F.F.F.FF.F.F...F.F....FFF.F....FFF..F.F..
 --------------------------------------------------
-35 tests, 16 failed
+42 tests, 18 failed
 
 assert-equal
   should be equal but fail
@@ -73,3 +73,13 @@ assert-deep-equal
   should fail for type mismatch
     expected: [(1)]
     actual:   [/1]
+
+assert-almost-equal
+  should fail for difference greater than epsilon
+    expected: 1 +/- 1e-05
+    actual:   1 + 0.000100017
+
+assert-not-almost-equal
+  should fail for difference smaller than epsilon
+    expected: 1 +/- 0.0001
+    actual:   1 + 1.00136e-05

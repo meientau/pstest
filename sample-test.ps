@@ -129,4 +129,29 @@
   (fail for type mismatch)
   [/1] [(1)] assert-deep-equal
 
+(assert-almost-equal) should
+
+  (pass for equal numbers)
+  1 1 1e-5 assert-almost-equal
+
+  (pass for difference below epsilon)
+  1 1e-5 add 1 1e-4 assert-almost-equal
+
+  (fail for difference greater than epsilon)
+  1 1e-4 add 1 1e-5 assert-almost-equal
+
+  (throw error for non-numbers)
+  { (not a number) /1 /1 2 assert-almost-equal } { pop pop } assert-error
+
+(assert-not-almost-equal) should
+
+  (fail for difference smaller than epsilon)
+  1 1e-5 add 1 1e-4 assert-not-almost-equal
+
+  (pass for difference greater epsilon)
+  1 1e-4 add 1 1e-5 assert-not-almost-equal
+
+  (throw error for non-numbers)
+  { (not a number) /1 /1 2 assert-not-almost-equal } { pop pop } assert-error
+
 test-summary

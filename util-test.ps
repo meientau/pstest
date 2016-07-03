@@ -9,6 +9,12 @@
     /i inc
     i 2 assert-equal
 
+(render-signed) should
+  (render a positive number with a plus)
+    1 render-signed ( + 1) assert-equal
+  (render a negative number with a minus)
+    -1 render-signed ( - 1) assert-equal
+
 (array-contains) should
   (return true if value exists in array)
     [1 2 3] 3 array-contains assert-true

@@ -217,3 +217,41 @@
         spec (no error) (error) .test-failed
     } ifelse
 } bind def
+
+/assert-almost-equal {          % <str> <num> <num> <num> assert-almost-equal <any>*
+    /epsilon exch def
+    /expected exch def
+    /actual exch def
+    /spec exch def
+
+    expected actual sub abs epsilon le {
+        spec .test-passed
+    } {
+        spec
+        {
+            expected
+            actual expected sub render-signed
+        }
+        {expected ( +/- ) epsilon}
+        .test-failed
+    } ifelse
+} bind def
+
+/assert-not-almost-equal {          % <str> <num> <num> <num> assert-not-almost-equal <any>*
+    /epsilon exch def
+    /expected exch def
+    /actual exch def
+    /spec exch def
+
+    expected actual sub abs epsilon ge {
+        spec .test-passed
+    } {
+        spec
+        {
+            expected
+            actual expected sub render-signed
+        }
+        {expected ( +/- ) epsilon}
+        .test-failed
+    } ifelse
+} bind def

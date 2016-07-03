@@ -136,6 +136,17 @@ If the test fails, execution still continues with the next test.  No
 automatic cleanup is done though, and the output of the
 **test-summary** is still likely to be garbage.
 
+ * _spec actual expected epsilon_ **assert-almost-equal** _any*_
+ * _spec actual expected epsilon_ **assert-not-almost-equal** _any*_
+
+When comparing numbers, accept a difference of up to _epsilon_.
+
+Note that the [reference
+manual](https://www.adobe.com/products/postscript/pdfs/PLRM.pdf) does
+not require more than IEEE 754 single precision, where the mantissa
+has only 24 bits, so epsilons smaller than 1e-05 are not useful in
+general.
+
 
 Caveats
 =======
@@ -159,6 +170,12 @@ produce garbage.
 
 While there is an assertion to test error handling in an application,
 even here no automatic cleanup is done.
+
+The tests for **almost-[not]-equal** are potentially fragile because
+they depend on the actual floating point representation and output
+formatting of the specific implementation of the PostScript language.
+I have not made an attempt to fix that yet.
+[#19](https://github.com/tylus/pstest/issues/19)
 
 
 References
