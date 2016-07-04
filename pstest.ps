@@ -205,6 +205,18 @@
     } ifelse
 } bind def
 
+/assert-deep-not-equal {  % <str> <array> <array> assert-deep-not-equal <any>*
+    /expected exch def
+    /actual exch def
+    /spec exch def
+
+    expected actual deep-eq not {
+        spec .test-passed
+    } {
+        spec actual expected .test-failed
+    } ifelse
+} bind def
+
 /assert-error {                 % <str> <proc> <proc> assert-error <any>*
     /clean exch def
     /proc exch def
@@ -251,7 +263,33 @@
             expected
             actual expected sub render-signed
         }
-        {expected ( +/- ) epsilon}
+        {(not ) expected ( +/- ) epsilon}
         .test-failed
+    } ifelse
+} bind def
+
+/assert-deep-almost-equal {  % <str> <array> <array> <num> assert-deep-almost-equal <any>*
+    /epsilon exch def
+    /expected exch def
+    /actual exch def
+    /spec exch def
+
+    expected actual epsilon deep-almost-eq {
+        spec .test-passed
+    } {
+        spec actual {expected ( +/- ) epsilon} .test-failed
+    } ifelse
+} bind def
+
+/assert-deep-not-almost-equal {  % <str> <array> <array> <num> assert-deep-not-almost-equal <any>*
+    /epsilon exch def
+    /expected exch def
+    /actual exch def
+    /spec exch def
+
+    expected actual epsilon deep-almost-eq not {
+        spec .test-passed
+    } {
+        spec actual {(not ) expected ( +/- ) epsilon} .test-failed
     } ifelse
 } bind def

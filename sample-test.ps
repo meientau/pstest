@@ -129,6 +129,15 @@
   (fail for type mismatch)
   [/1] [(1)] assert-deep-equal
 
+(assert-deep-not-equal) should
+
+  (pass for simple arrays with different content)
+  [1 2 3] [1 2 4] assert-deep-not-equal
+
+  (fail for simple arrays with same content)
+  [1 2 3] [1 2 3] assert-deep-not-equal
+
+
 (assert-almost-equal) should
 
   (pass for equal numbers)
@@ -153,5 +162,36 @@
 
   (throw error for non-numbers)
   { (not a number) /1 /1 2 assert-not-almost-equal } { pop pop } assert-error
+
+
+(assert-deep-almost-equal) should
+
+  (pass for primitives)
+  1.00 1.01 0.1 assert-deep-almost-equal
+
+  (pass for simple arrays)
+  [1 2 3.00] [1 2 3.01] 0.02 assert-deep-almost-equal
+
+  (fail for primitives)
+  1.00 1.01 0.005 assert-deep-almost-equal
+
+  (fail for simple arrays)
+  [1 2 3.00] [1 2 3.01] 0.002 assert-deep-almost-equal
+
+
+(assert-deep-not-almost-equal) should
+
+  (fail for primitives)
+  1.00 1.01 0.1 assert-deep-not-almost-equal
+
+  (fail for simple arrays)
+  [1 2 3.00] [1 2 3.01] 0.02 assert-deep-not-almost-equal
+
+  (pass for primitives)
+  1.00 1.01 0.005 assert-deep-not-almost-equal
+
+  (pass for simple arrays)
+  [1 2 3.00] [1 2 3.01] 0.002 assert-deep-not-almost-equal
+
 
 test-summary

@@ -148,6 +148,11 @@ has only 24 bits, so epsilons smaller than 1e-05 are not useful in
 general.
 
 
+ * _spec actual expected epsilon_ **assert-deep-almost-equal** _any*_
+ * _spec actual expected epsilon_ **assert-deep-not-almost-equal** _any*_
+
+Well yeah: deep and almost.
+
 Caveats
 =======
 

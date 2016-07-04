@@ -51,7 +51,13 @@
     end
 } def
 
-/.deep-op {                     % <array> <array> <op> .deep-op <bool>
+/deep-almost-eq {               % <array> <array> <num> deep-almost-eq <bool>
+    /.eps exch def
+    /.op {sub abs .eps le} bind def
+    .deep-op
+} def
+
+/.deep-op {                     % <array> <array> .deep-op <bool>
     2 dict begin
     /b exch def
     /a exch def
